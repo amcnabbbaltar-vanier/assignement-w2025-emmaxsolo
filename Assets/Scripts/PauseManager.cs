@@ -2,41 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//If player clicks a button it will modify here
+
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenuPanel;
-   
+    [SerializeField] private GameObject healthScorePanel;
     private bool isPaused = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        pauseMenuPanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)){
-                PauseGame();
-            
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TogglePause();
         }
     }
 
-    public void PauseGame(){
+    public void TogglePause()
+    {
+        if (isPaused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
+    }
+
+    public void PauseGame()
+    {
         pauseMenuPanel.SetActive(true);
+        healthScorePanel.SetActive(false);
         Time.timeScale = 0f;
         isPaused = true;
     }
 
-    public void ResumeGame(){
+    public void ResumeGame()
+    {
         pauseMenuPanel.SetActive(false);
+        healthScorePanel.SetActive(true);
         Time.timeScale = 1f;
         isPaused = false;
     }
 
-    public void QuitGame(){
+    public void QuitGame()
+    {
+        GameManager.Instance.playerScore = 0;
+        GameManager.Instance.playerHealth = 3;
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void RestartLevel()
+    {
+        GameManager.Instance.RestartLevel();
     }
 }

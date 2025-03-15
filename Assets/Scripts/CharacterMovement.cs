@@ -199,4 +199,15 @@ public class CharacterMovement : MonoBehaviour
         // Apply the new velocity directly
         rb.velocity = newVelocity;
     }
+    
+    //ADDED FOR JUMP BOOST HEIGHT
+    public void SetJumpForce(float newJumpForce)
+    {
+        jumpForce = newJumpForce;
+    }
+
+    public float GetJumpForce()
+    {
+        return jumpForce;
+    }
 }

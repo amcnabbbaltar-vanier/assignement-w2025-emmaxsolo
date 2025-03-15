@@ -4,21 +4,37 @@ using UnityEngine;
 
 public class AnimatorController : MonoBehaviour
 {
-    private Animator animator;
+    public Animator animator;
     private CharacterMovement characterMovement;
+    private Rigidbody rb;
+
     public void Start()
     {
         animator = GetComponent<Animator>();
         characterMovement = GetComponent<CharacterMovement>();
-    }
-    public void LateUpdate()
-    {
-       UpdateAnimator();
+        rb = GetComponent<Rigidbody>();
     }
 
-    // TODO Fill this in with your animator calls
+    public void LateUpdate()
+    {
+        UpdateAnimator();
+    }
+
     void UpdateAnimator()
     {
-        
+        animator.SetFloat("CharacterSpeed", rb.velocity.magnitude);
+        animator.SetBool("IsGrounded", characterMovement.IsGrounded);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (characterMovement.IsGrounded)
+            {
+                animator.SetTrigger("Jump");
+            }
+            else
+            {
+                animator.SetTrigger("FlipTrigger");
+            }
+        }
     }
 }
