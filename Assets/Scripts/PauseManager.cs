@@ -53,10 +53,7 @@ public class PauseManager : MonoBehaviour
 
     public void QuitGame()
     {
-        GameManager.Instance.playerScore = 0;
-        GameManager.Instance.playerHealth = 3;
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        GameManager.Instance.QuitToMainMenu();
     }
 
     public void RestartLevel()
