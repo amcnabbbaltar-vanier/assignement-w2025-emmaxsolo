@@ -16,31 +16,26 @@ public class PlayerBoost : MonoBehaviour
 
     void Update()
     {
-        // Check if speed boost should end
         if (Time.time >= speedBoostEndTime && boostedSpeed != defaultSpeed)
         {
-            boostedSpeed = defaultSpeed; // Reset to normal speed
+            boostedSpeed = defaultSpeed; 
             
-            // Log for debugging
-            Debug.Log("Speed boost ended. Speed reset to normal.");
-            
-            // Optionally, reset the multiplier in CharacterMovement to 1 if you're using a multiplier
+           // Debug.Log("Speed boost ended. Speed reset to normal.");
+
             CharacterMovement characterMovement = GetComponent<CharacterMovement>();
             if (characterMovement != null)
             {
-                characterMovement.speedMultiplier = 1.0f; // Reset multiplier to 1 when speed boost ends
+                characterMovement.speedMultiplier = 1.0f; 
             }
 
-            // Update the animator to reflect normal speed after boost ends
             AnimatorController animatorController = GetComponent<AnimatorController>();
             if (animatorController != null)
             {
-                animatorController.animator.SetFloat("CharacterSpeed", defaultSpeed); // Set speed back to normal
+                animatorController.animator.SetFloat("CharacterSpeed", defaultSpeed); 
                 Debug.Log("Animator Speed Reset: " + defaultSpeed);
             }
         }
 
-        // Check if double jump should end
         if (Time.time >= doubleJumpEndTime)
         {
             canDoubleJump = false;

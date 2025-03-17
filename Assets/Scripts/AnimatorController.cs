@@ -7,12 +7,14 @@ public class AnimatorController : MonoBehaviour
     public Animator animator;
     private CharacterMovement characterMovement;
     private Rigidbody rb;
+    //private AudioSource audioSource;
 
     public void Start()
     {
         animator = GetComponent<Animator>();
         characterMovement = GetComponent<CharacterMovement>();
         rb = GetComponent<Rigidbody>();
+        //audioSource = GetComponent<AudioSource>();
     }
 
     public void LateUpdate()
@@ -37,4 +39,5 @@ public class AnimatorController : MonoBehaviour
             }
         }
     }
+
 }

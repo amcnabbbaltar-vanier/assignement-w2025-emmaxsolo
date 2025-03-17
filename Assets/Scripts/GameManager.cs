@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int checkpointScore = 0;
     public int checkpointTime = 0;
 
-    private float globalStartTime;
+    public float globalStartTime;
 
     private TextMeshProUGUI scoreText;
     private TextMeshProUGUI healthText;
@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             globalStartTime = Time.time;
-            SceneManager.sceneLoaded += OnSceneLoaded; // Hook scene load
+            SceneManager.sceneLoaded += OnSceneLoaded; 
         }
         else
         {
@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Automatically find HUD texts once when scene is loaded
         scoreText = GameObject.Find("ScoreText")?.GetComponent<TextMeshProUGUI>();
         healthText = GameObject.Find("HealthText")?.GetComponent<TextMeshProUGUI>();
         gameTimerText = GameObject.Find("TimerText")?.GetComponent<TextMeshProUGUI>();

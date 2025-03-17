@@ -12,7 +12,6 @@ public class PortalTrigger : MonoBehaviour
             GameManager.Instance.checkpointScore = GameManager.Instance.playerScore;
             GameManager.Instance.checkpointTime = GameManager.Instance.timePassed;
 
-            // Load next scene
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
