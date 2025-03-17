@@ -8,6 +8,7 @@ public class PlayerBoost : MonoBehaviour
     private bool canDoubleJump = false;
     private float speedBoostEndTime = 0f;
     private float doubleJumpEndTime = 0f;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -19,8 +20,6 @@ public class PlayerBoost : MonoBehaviour
         if (Time.time >= speedBoostEndTime && boostedSpeed != defaultSpeed)
         {
             boostedSpeed = defaultSpeed; 
-            
-           // Debug.Log("Speed boost ended. Speed reset to normal.");
 
             CharacterMovement characterMovement = GetComponent<CharacterMovement>();
             if (characterMovement != null)
@@ -36,12 +35,11 @@ public class PlayerBoost : MonoBehaviour
             }
         }
 
-        if (Time.time >= doubleJumpEndTime)
+        if (Time.time >= doubleJumpEndTime && canDoubleJump)
         {
             canDoubleJump = false;
         }
     }
-
 
     public void ActivateSpeedBoost(float multiplier, float duration)
     {
@@ -55,7 +53,6 @@ public class PlayerBoost : MonoBehaviour
         }
     }
 
-
     public void EnableDoubleJump(float duration)
     {
         canDoubleJump = true;
@@ -68,7 +65,6 @@ public class PlayerBoost : MonoBehaviour
         }
     }
 
-
     public float GetCurrentSpeed()
     {
         return boostedSpeed;
@@ -76,6 +72,6 @@ public class PlayerBoost : MonoBehaviour
 
     public bool CanDoubleJump()
     {
-        return canDoubleJump;
+        return canDoubleJump && Time.time < doubleJumpEndTime;
     }
 }

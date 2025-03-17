@@ -9128,6 +9128,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4491154413394741843, guid: c2c4049c0fe4e484e82b17798f1d1044, type: 3}
+      propertyPath: flipEffect
+      value: 
+      objectReference: {fileID: 113445412}
     - target: {fileID: 4495386458875541354, guid: c2c4049c0fe4e484e82b17798f1d1044, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
